@@ -1,0 +1,88 @@
+1> QUICK STRAT WORD COUNT :https://cloud.google.com/dataflow/docs/quickstarts/quickstart-java-maven
+
+2> LINUX BASIC COMMANDS: https://www.tecmint.com/13-basic-cat-command-examples-in-linux/
+3> create example of cloud-dataflow:https://cloud.google.com/dataflow/docs/quickstarts/quickstart-java-maven
+
+<VImp>-----##### https://www.programcreek.com/java-api-examples/?code=mdvorsky/DataflowSME/DataflowSME-master/src/main/java8/com/google/cloud/dataflow/tutorials/game/Exercise1.java
+
+<VImp>-----##### https://www.programcreek.com/java-api-examples/index.php?api=com.google.cloud.dataflow.sdk.io.BigQueryIO
+
+
+
+
+Run locally -------------->
+
+mvn compile exec:java \
+      -Dexec.mainClass=org.apache.beam.examples.TestWordCount \
+      -Dexec.args="--inputFile=SampleTextFile_10kb.txt \
+         --output=./output/"
+
+
+Run on GC-Dataflow -------------->
+ mvn -Pdataflow-runner compile exec:java \
+ -Dexec.mainClass=org.apache.beam.examples.WordCount \
+ -Dexec.args="--project=propane-fusion-219509  \
+  --stagingLocation=gs://dataflow-propane-fusion-219509/staging/ \
+  --output=gs://dataflow-propane-fusion-219509/output \
+  --runner=DataflowRunner"
+
+mvn -Pdataflow-runner compile exec:java \
+      -Dexec.mainClass=org.apache.beam.examples.WordCount \
+      -Dexec.args="--project=<PROJECT_ID> \
+       --stagingLocation=gs://<STORAGE_BUCKET>/staging/ \
+       --output=gs://<STORAGE_BUCKET>/output \
+       --runner=DataflowRunner"
+
+ --inputFile=/home/anveshsharma99/word-count-beam/SampleTextFile_10kb.txt \
+
+---cd word-count-beam----
+
+ mvn -Pdataflow-runner compile exec:java \
+ -Dexec.mainClass=org.apache.beam.examples.TestWordCount \
+ -Dexec.args="--project=propane-fusion-219509  \
+  --inputFile=gs://dataflow-propane-fusion-219509/SampleText.txt \
+  --stagingLocation=gs://dataflow-propane-fusion-219509/staging/ \
+  --output=gs://dataflow-propane-fusion-219509/output \
+  --runner=DataflowRunner"
+
+
+--------------Run TestUserScore----------------------
+
+ mvn -Pdataflow-runner compile exec:java \
+ -Dexec.mainClass=org.apache.beam.examples.TestUserScore \
+ -Dexec.args="--project=propane-fusion-219509  \
+  --stagingLocation=gs://dataflow-propane-fusion-219509/staging/ \
+  --output=gs://dataflow-propane-fusion-219509/output \
+  --runner=DataflowRunner"
+
+
+################### output of TestUserScore ###################
+
+total_score: 609015, user: user0_BisqueWombat
+total_score: 413422, user: user4_MagentaCassowary
+total_score: 324091, user: user1_ArmyGreenAntechinus
+total_score: 69465, user: user7_ApricotKoala
+
+
+
+--------------Run TestUserScore to Store in BigQuery----------------------
+
+ mvn -Pdataflow-runner compile exec:java \
+ -Dexec.mainClass=org.apache.beam.examples.TestUserScore \
+ -Dexec.args="--project=propane-fusion-219509  \
+  --stagingLocation=gs://dataflow-propane-fusion-219509/staging/ \
+  --dataset=BigQuery_propane_fusion_219509  \
+  --runner=DataflowRunner"
+
+
+
+name Anvesh,house no b104, scrum utkarsh,hinjewadi phase 1,city pune,pin 411057
+
+
+
+Bigquery: https://www.youtube.com/watch?v=0hSAslHXXJc&list=PL3GCZkoyKK4dXPwdq2X4XNcutp79vbo9q
+
+
+Stream Processing Pipeline - Using Pub/Sub, Dataflow & BigQuery : https://www.youtube.com/watch?v=faexdxtZGno
+Introduction to Google Cloud Dataflow : https://www.youtube.com/watch?v=1l-PBRothn0
+ 				      : https://cloudacademy.com/course/introduction-to-google-cloud-dataflow/introduction-42/
